@@ -621,17 +621,17 @@ func main() {
 	gorilla.HandleFunc("/txinfo", txDetailsPage)
 	gorilla.HandleFunc("/blockdetails", blockInDetails)
 	gorilla.HandleFunc("/accInfo", showBalanceInfo)
-	gorilla.HandleFunc("/", welcomePage)
+	gorilla.HandleFunc("/", homePage)
 
 	// http server
 	// Note: Here gorilla is like passing our own server handler into net/http, by default its false
 	srv := &http.Server{
 		Handler: gorilla,
-		Addr:    "127.0.0.1:5051",
+		Addr:    "0.0.0.0:5051",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	fmt.Println("!!!! SERVER STARTED at ADDRESS : 127.0.0.1:5051 !!!!")
+	fmt.Println("!!!! SERVER STARTED at ADDRESS : 0.0.0.0:5051 !!!!")
 	log.Fatal(srv.ListenAndServe())
 }
